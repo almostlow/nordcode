@@ -3,6 +3,21 @@
 {% block title %}Feed{% endblock %}
 
 {% block body %}
+	<h1>Most frequent words in feed</h1>
+    <table class="table">
+      <thead>
+	      <th>Word</th>
+	      <th>Count</th>
+      </thead>
+      <tbody>
+	      {% for word, count in feeds.words %}
+	      	<tr>
+		      	<td>{{ word }}</td>
+		      	<td>{{ count }}</td>
+	        </tr>
+	      {% endfor %}
+      </tbody>
+    </table>
 	<h1>Feed</h1>
     <table class="table">
       <thead>
@@ -13,7 +28,7 @@
 	      <th>Action</th>
       </thead>
       <tbody>
-	      {% for entry in feeds %}
+	      {% for entry in feeds.feed %}
 	      	<tr>
 		      	<td>{{ entry.title|raw }}</td>
 		      	<td>{{ entry.author }}</td>
