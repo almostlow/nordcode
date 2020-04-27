@@ -7,12 +7,12 @@ use App\Feeds\FeedCreator;
 
 class CacheWarmer implements CacheWarmerInterface
 {
-	private $feedCreator;
+    private $feedCreator;
 
-	public function __construct(FeedCreator $feedCreator)
-	{
-		$this->feedCreator = $feedCreator;
-	}
+    public function __construct(FeedCreator $feedCreator)
+    {
+        $this->feedCreator = $feedCreator;
+    }
 
     /**
      * Load cache before user hit web
