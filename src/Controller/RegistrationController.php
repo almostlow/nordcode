@@ -51,7 +51,7 @@ class RegistrationController extends AbstractController
     /**
     * @Route("/validate", name="app_validate", methods={"POST"})
     */
-    public function validate(Request $request, ValidatorInterface $validator): Response
+    public function validate(Request $request, ValidatorInterface $validator): JsonResponse
     {
         $user = new User();
         $email = $request->get('email');

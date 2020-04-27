@@ -44,6 +44,9 @@ class WikiCrawler
                 }
                 $this->commonWords[] = $node->text();
             });
+            if (empty($this->commonWords)) {
+                $this->commonWords = $this->fallbackCommonWords();
+            }
         } catch (\Exception $e) {
             $this->logger->error($e->getMessage());
             $this->commonWords = $this->fallbackCommonWords();

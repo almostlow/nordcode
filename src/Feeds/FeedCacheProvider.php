@@ -43,6 +43,7 @@ class FeedCacheProvider
      *
      * @param $value
      * @param $ttl
+     * @return void
      */
     public function set(array $value):void
     {
@@ -61,6 +62,7 @@ class FeedCacheProvider
 
     /**
      * Checking response status from api.
+     * @return bool
      */
     public function isSuccessfull():bool
     {
