@@ -7,7 +7,7 @@ From root project directory
 ``php bin/console doctrine:database:create``  
 ``php bin/console doctrine:migrations:migrate``  
 
-For faster performance cache warmer can be run  
+For faster performance cache warmer can be ran  
 ``php bin/console cache/warmup``  
 
 This command loads feed to cache for 5 minutes.
