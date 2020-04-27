@@ -4,13 +4,25 @@
 
 {% block body %}
     <h1>Register</h1>
-    {{ form_start(registrationForm, {attr: {'novalidate': 'novalidate'}}) }}
-		  <div class="form-group">
-		    {{ form_row(registrationForm.email, {attr: {'class': 'form-control'}}) }}
-		  </div>
-		  <div class="form-group">
-		    {{ form_row(registrationForm.plainPassword, {attr: {'class': 'form-control'}}) }}
-		  </div>
-		  <button type="submit" class="btn btn-primary">Register</button>
+    {{ form_start(registrationForm, {attr: {'novalidate': 'novalidate', 'id': 'registration-form'}}) }}
+	  <div id="email-group" class="form-group">
+	  	{% set class = registrationForm.email.vars.errors|length ? "is-invalid" : "" %}
+	    {% set classLabel = registrationForm.email.vars.errors|length ? "text-danger" : "" %}
+	  	{{ form_label(registrationForm.email, null, {label_attr: {'class': "label #{classLabel}"}}) }}
+	    {{ form_widget(registrationForm.email, {attr: {'class': "form-control #{class}"}}) }}
+	    <small id="emailErrors" class="text-danger">
+          {{ form_errors(registrationForm.email) }}
+        </small>  
+	  </div>
+	  <div class="form-group">
+	  	{% set class = registrationForm.plainPassword.vars.errors|length ? "is-invalid" : "" %}
+	    {% set classLabel = registrationForm.plainPassword.vars.errors|length ? "text-danger" : "" %}
+	  	{{ form_label(registrationForm.plainPassword, null, {label_attr: {'class': "#{classLabel}"}}) }}
+	    {{ form_widget(registrationForm.plainPassword, {attr: {'class': "form-control #{class}"}}) }}
+	    <small id="passwordErrors" class="text-danger">
+          {{ form_errors(registrationForm.plainPassword) }}
+        </small> 
+	  </div>
+	  <button id="form-submit" type="submit" class="btn btn-primary">Register</button>
     {{ form_end(registrationForm) }}
 {% endblock %}

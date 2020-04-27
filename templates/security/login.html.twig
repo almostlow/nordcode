@@ -3,7 +3,12 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
-<form method="post" novalidate>
+<form method="post" novalidate style="padding: 5px;">
+    {% for message in app.flashes('notice') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
