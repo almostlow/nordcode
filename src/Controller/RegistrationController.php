@@ -20,7 +20,7 @@ class RegistrationController extends AbstractController
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, ValidatorInterface $validator): Response
     {
         if ($this->getUser()) {
-          return $this->redirectToRoute('app_feed');
+            return $this->redirectToRoute('app_feed');
         }
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -48,9 +48,9 @@ class RegistrationController extends AbstractController
         ]);
     }
 
-     /**
-     * @Route("/validate", name="app_validate", methods={"POST"})
-     */
+    /**
+    * @Route("/validate", name="app_validate", methods={"POST"})
+    */
     public function validate(Request $request, ValidatorInterface $validator): Response
     {
         $user = new User();
@@ -59,10 +59,12 @@ class RegistrationController extends AbstractController
         $errors = $validator->validate($user);
         $errorArr = [];
         if (!empty($errors)) {
-          foreach ($errors as $error) {
-              if ($error->getPropertyPath() !== 'email') continue;
-              $errorArr[$error->getPropertyPath()][] = $error->getMessage();
-          }
+            foreach ($errors as $error) {
+                if ($error->getPropertyPath() !== 'email') {
+                    continue;
+                }
+                $errorArr[$error->getPropertyPath()][] = $error->getMessage();
+            }
         }
         return new JsonResponse(['errors' => $errorArr]);
     }

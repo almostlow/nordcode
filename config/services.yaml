@@ -26,6 +26,7 @@ services:
     App\Feeds\FeedCreator:
         arguments:
             $url: https://www.theregister.co.uk/software/headlines.atom
+            $wikiUrl: https://en.wikipedia.org/w/api.php
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
