@@ -3,6 +3,10 @@
 {% block title %}Feed{% endblock %}
 
 {% block body %}
+	<h1>Excluded words from frequent words</h1>
+	{% for excludedWord in feeds.excluded %}
+      {{ excludedWord }},
+	{% endfor %}
 	<h1>Most frequent words in feed</h1>
     <table class="table">
       <thead>
