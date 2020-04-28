@@ -45,7 +45,7 @@ class WikiCrawler
                 }
                 $this->commonWords[] = $node->text();
             });
-            if (!empty($this->commonWords)) {
+            if (empty($this->commonWords)) {
                 throw new MissingCommonWordsException('No common words crawled from wiki');
             }
         } catch (MissingCommonWordsException $e) {
