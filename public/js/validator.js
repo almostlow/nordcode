@@ -1,12 +1,20 @@
 jQuery(document).ready(function() {
     var $ = jQuery;
-    $("#registration_form_email").bind("change", validateFields);
-    $('#form-submit').on('click', function(e) {
+    $("#registration_form_email").bind("change", function(e) {
+        removeErrors();
         e.preventDefault();
-        validateFields('submit');
+        $(this).siblings('.spinner-border').attr('style', 'display: inline-block;');
+        validateFields('', $(this).parent());
+    });
+    $('#form-submit').on('click', function(e) {
+        removeErrors();
+        e.preventDefault();
+        $(this).prop('disabled', true);
+        $(this).find('.spinner-border').attr('style', 'display: inline-block;');
+        validateFields('submit', $(this));
     })
 
-    function validateFields(type = '') {
+    function validateFields(type = '', el = null) {
         var email = $("#registration_form_email").val();
         $.post('/validate', {
             'email': email
@@ -30,7 +38,18 @@ jQuery(document).ready(function() {
                     $('#email-group > .form-control').removeClass('is-invalid');
                 }
             }
-            if (globalErrors === 0 && type === 'submit') $('#registration-form').submit();
+            if (globalErrors === 0 && type === 'submit') {
+                $('#registration-form').submit();
+            } else if (el && el.length) {
+                el.prop('disabled', false);
+                el.find('.spinner-border').attr('style', 'display: none;');
+            }
         });
+    }
+
+    function removeErrors() {
+        $('small.text-danger').html('');
+        $('.label').removeClass('text-danger');
+        $('.form-control').removeClass('is-invalid');
     }
 })

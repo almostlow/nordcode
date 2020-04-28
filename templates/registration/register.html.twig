@@ -9,7 +9,10 @@
 	  	{% set class = registrationForm.email.vars.errors|length ? "is-invalid" : "" %}
 	    {% set classLabel = registrationForm.email.vars.errors|length ? "text-danger" : "" %}
 	  	{{ form_label(registrationForm.email, null, {label_attr: {'class': "label #{classLabel}"}}) }}
-	    {{ form_widget(registrationForm.email, {attr: {'class': "form-control #{class}"}}) }}
+	    {{ form_widget(registrationForm.email, {attr: {'class': "form-control #{class}", 'autocomplete': 'off'}}) }}
+	    <div class="spinner-border email-spinner" role="status">
+		  <span class="sr-only">Loading...</span>
+		</div>
 	    <small id="emailErrors" class="text-danger">
           {{ form_errors(registrationForm.email) }}
         </small>  
@@ -18,11 +21,16 @@
 	  	{% set class = registrationForm.plainPassword.vars.errors|length ? "is-invalid" : "" %}
 	    {% set classLabel = registrationForm.plainPassword.vars.errors|length ? "text-danger" : "" %}
 	  	{{ form_label(registrationForm.plainPassword, null, {label_attr: {'class': "#{classLabel}"}}) }}
-	    {{ form_widget(registrationForm.plainPassword, {attr: {'class': "form-control #{class}"}}) }}
+	    {{ form_widget(registrationForm.plainPassword, {attr: {'class': "form-control #{class}", 'autocomplete': 'off'}}) }}
 	    <small id="passwordErrors" class="text-danger">
           {{ form_errors(registrationForm.plainPassword) }}
         </small> 
 	  </div>
-	  <button id="form-submit" type="submit" class="btn btn-primary">Register</button>
+	  <button id="form-submit" type="submit" class="btn btn-primary">
+	  	Register
+        <div class="spinner-border" role="status">
+		  <span class="sr-only">Loading...</span>
+		</div>
+	  </button>
     {{ form_end(registrationForm) }}
 {% endblock %}

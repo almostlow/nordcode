@@ -4,6 +4,7 @@ namespace App\Crawlers;
 
 use Symfony\Component\DomCrawler\Crawler;
 use Psr\Log\LoggerInterface;
+use App\Exceptions\MissingCommonWordsException;
 
 class WikiCrawler
 {
@@ -45,7 +46,7 @@ class WikiCrawler
                 $this->commonWords[] = $node->text();
             });
             if (empty($this->commonWords)) {
-                $this->commonWords = $this->fallbackCommonWords();
+                throw new MissingCommonWordsException('No common words crawled from wiki');
             }
         } catch (\Exception $e) {
             $this->logger->error($e->getMessage());
