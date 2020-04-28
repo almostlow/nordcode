@@ -48,7 +48,7 @@ class WikiCrawler
             if (empty($this->commonWords)) {
                 throw new MissingCommonWordsException('No common words crawled from wiki');
             }
-        } catch (MissingCommonWordsException $e) {
+        } catch (\Exception $e) {
             $this->logger->error($e->getMessage());
             $this->commonWords = $this->fallbackCommonWords();
         }
