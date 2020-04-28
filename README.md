@@ -13,4 +13,5 @@ For faster performance cache warmer can be ran
 This command loads feed to cache for 5 minutes.
 
 Run server  
-``php -S 127.0.0.1:8000 -t public/``
+``php -S 127.0.0.1:8000 -t public/``  
+Go to http://127.0.0.1:8000
